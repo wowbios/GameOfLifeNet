@@ -1,9 +1,0 @@
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\bin\Debug\netcoreapp3.1\GameOfLifeNet.deps.json
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\bin\Debug\netcoreapp3.1\GameOfLifeNet.dll
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\bin\Debug\netcoreapp3.1\GameOfLifeNet.pdb
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.csprojAssemblyReference.cache
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.AssemblyInfoInputs.cache
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.AssemblyInfo.cs
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.csproj.CoreCompileInputs.cache
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.dll
-E:\Projects\GameOfLifeNet\src\GameOfLifeNet\obj\Debug\netcoreapp3.1\GameOfLifeNet.pdb

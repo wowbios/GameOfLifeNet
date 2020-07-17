@@ -2,7 +2,7 @@
 
 namespace GameOfLifeNet
 {
-    public struct GameState
+    public readonly struct GameState
     {
         internal GameState(bool[,] field, long generation)
         {
@@ -10,8 +10,8 @@ namespace GameOfLifeNet
             Generation = generation;
         }
         
-        public long Generation { get; private set; }
+        public long Generation { get; }
         
-        public bool[,] Field { get; private set; }
+        public bool[,] Field { get; }
     }
 }

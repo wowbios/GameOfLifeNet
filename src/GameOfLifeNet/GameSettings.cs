@@ -4,11 +4,11 @@ namespace GameOfLifeNet
 {
     public class GameSettings
     {
-        public int Width { get; set; }
+        public int Width { get; }
         
-        public int Height { get; set; }
+        public int Height { get; }
 
-        public IPreset Preset { get; set; }
+        public IPreset Preset { get; }
         
         public GameSettings(int width, int height, IPreset preset)
         {

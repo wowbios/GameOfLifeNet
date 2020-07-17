@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeNet", "GameOfLifeNet\GameOfLifeNet.csproj", "{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeConsole", "GameOfLifeConsole\GameOfLifeConsole.csproj", "{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

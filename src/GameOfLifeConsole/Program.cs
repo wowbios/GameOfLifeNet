@@ -1,7 +1,6 @@
 ﻿using System;
 using GameOfLifeNet;
 using GameOfLifeNet.Preset;
-using GameOfLifeNet.Render;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole
@@ -11,7 +10,7 @@ namespace GameOfLifeConsole
         private const int Width = 10;
         private const int Height = 10;
         private const int ConsoleFont = 2;
-        private const int RandomFulfillPercent = 50;
+        private const int RandomFulfillPercent = 30;
         private const double Interval = 100;
         
         static void Main(string[] args)
@@ -20,7 +19,7 @@ namespace GameOfLifeConsole
             {
                 ConsoleHelper.SetConsoleFont(ConsoleFont);
                 
-                var settings = new GameSettings(Width, Height, new GliderAtTheMiddlePreset());
+                var settings = new GameSettings(Width, Height, new RandomPreset(RandomFulfillPercent));
                 
                 var game = new Game(settings, new ConsoleRender());
                 game.Prepare();
@@ -34,7 +33,7 @@ namespace GameOfLifeConsole
                 Console.WriteLine("Press Enter to start");
                 Console.ReadLine();
 
-                timer.Start();
+                // timer.Start();
             }
             catch (Exception ex)
             {

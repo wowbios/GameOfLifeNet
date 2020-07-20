@@ -11,7 +11,7 @@ namespace GameOfLifeConsole
         private const int Height = 10;
         private const int ConsoleFont = 2;
         private const int RandomFulfillPercent = 30;
-        private const double Interval = 100;
+        private const double Interval = 1000;
         
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace GameOfLifeConsole
             {
                 ConsoleHelper.SetConsoleFont(ConsoleFont);
                 
-                var settings = new GameSettings(Width, Height, new RandomPreset(RandomFulfillPercent));
+                var settings = new GameSettings(Width, Height, new GliderAtTheMiddlePreset());
                 
                 var game = new Game(settings, new ConsoleRender());
                 game.Prepare();
@@ -27,13 +27,21 @@ namespace GameOfLifeConsole
                 var timer = new Timer(Interval);
                 timer.Elapsed += (_, e) =>
                 {
-                    game.MakeNextGeneration();
+                    try
+                    {
+                        game.MakeNextGeneration();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                        timer.Stop();
+                    }
                 };
                 
                 Console.WriteLine("Press Enter to start");
                 Console.ReadLine();
 
-                // timer.Start();
+                timer.Start();
             }
             catch (Exception ex)
             {

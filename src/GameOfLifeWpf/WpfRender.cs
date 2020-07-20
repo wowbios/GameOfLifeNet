@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -25,7 +27,7 @@ namespace GameOfLifeWpf
             if(!_inited)
                 Init();
 
-            Application.Current.Dispatcher.Invoke(() => DrawPixelsEx(state.Field));
+            Application.Current.Dispatcher.Invoke(() => DrawPixelsEx(state.Events));
         }
 
         private void Init()
@@ -78,11 +80,38 @@ namespace GameOfLifeWpf
             }
         }
 
-        private void DrawPixelsEx(bool[,] field)
+        private void DrawPixelsEx(IEnumerable<ChangeEvent> events)
         {
+            string d = "";
             Debug.WriteLine("Draw");
+            for (var i = 0; i < 5; i++)
+            {
+                for (var j = 0; j < 5; j++)
+                {
+                    Nullable<ChangeEvent> e = events
+                        .Cast<ChangeEvent?>()
+                        .FirstOrDefault(x => x?.X == i && x?.Y == j);
+                    if (!e.HasValue)
+                    {
+                        d += "0";
+                    }
+                    else
+                    {
+                        d += e.Value.IsAlive ? "+" : "-";
+                    }
+                }
+
+                d += '\n';
+            }
+
+            Debug.Write(d);
+
             using (_bitmap.GetBitmapContext())
-                _bitmap.ForEach((x, y) => field[x, y] ? Colors.White : Colors.Black);
+                foreach(ChangeEvent e in events)
+                {
+
+                    _bitmap.SetPixel(e.X, e.Y, e.IsAlive ? Colors.White : Colors.Black);
+                }
         }
     }
 }

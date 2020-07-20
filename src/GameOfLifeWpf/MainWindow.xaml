@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameOfLifeWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Image Name="FieldImage" Height="450" Width="800" Stretch="Fill" StretchDirection="Both" HorizontalAlignment="Stretch"
-               VerticalAlignment="Stretch"  ></Image>
+        Title="MainWindow" Height="600" Width="600">
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Name="FieldImage" Height="300" Width="300" Stretch="UniformToFill"  ></Image>
+        <TextBlock Grid.Column="1" Name="Counter" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="15" />
     </Grid>
 </Window>

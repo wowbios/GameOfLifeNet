@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using GameOfLifeNet;
 
-namespace GameOfLifeNet.Render
+namespace GameOfLifeConsole
 {
     public class ConsoleRender : IRender
     {
@@ -9,7 +10,7 @@ namespace GameOfLifeNet.Render
         {
             int width = state.Field.GetLength(0);
             int height = state.Field.GetLength(1);
-            
+
             ConsoleColor borderColor = ConsoleColor.Blue;
             ConsoleColor mainColor = ConsoleColor.White;
             const char borderSymbol = '█';

@@ -1,7 +1,6 @@
 ﻿using System;
 using GameOfLifeNet;
 using GameOfLifeNet.Preset;
-using GameOfLifeNet.Render;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole
@@ -11,8 +10,8 @@ namespace GameOfLifeConsole
         private const int Width = 10;
         private const int Height = 10;
         private const int ConsoleFont = 2;
-        private const int RandomFulfillPercent = 50;
-        private const double Interval = 100;
+        private const int RandomFulfillPercent = 30;
+        private const double Interval = 1000;
         
         static void Main(string[] args)
         {
@@ -28,7 +27,15 @@ namespace GameOfLifeConsole
                 var timer = new Timer(Interval);
                 timer.Elapsed += (_, e) =>
                 {
-                    game.MakeNextGeneration();
+                    try
+                    {
+                        game.MakeNextGeneration();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex);
+                        timer.Stop();
+                    }
                 };
                 
                 Console.WriteLine("Press Enter to start");

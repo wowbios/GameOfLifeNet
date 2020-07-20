@@ -1,17 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GameOfLifeNet
 {
     public readonly struct GameState
     {
-        internal GameState(bool[,] field, long generation)
+        internal GameState(long generation, IEnumerable<ChangeEvent> events)
         {
-            Field = field ?? throw new ArgumentNullException(nameof(field));
+            _ = events ?? throw new ArgumentNullException(nameof(events));
+
+            Events = events.ToArray();
             Generation = generation;
         }
         
         public long Generation { get; }
         
-        public bool[,] Field { get; }
+        public IReadOnlyCollection<ChangeEvent> Events { get; }
     }
 }

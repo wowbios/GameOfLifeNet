@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace GameOfLifeNet
 {
@@ -21,12 +25,24 @@ namespace GameOfLifeNet
         public void Prepare()
         {
             _settings.Preset.InitializeField(_field);
-            Render();
+
+            Render(ReadEvents());
+
+            IEnumerable<ChangeEvent> ReadEvents()
+            {
+                for(var i=0;i<_field.GetLength(0);i++)
+                for (var j = 0; j < _field.GetLength(1); j++)
+                {
+                    yield return new ChangeEvent(i,j, _field[i,j]);
+                }
+            }
         }
 
-        public void MakeNextGeneration()
+        public (TimeSpan, TimeSpan) MakeNextGeneration()
         {
-            var newField = new bool[_settings.Width, _settings.Height];
+            var dt = DateTime.Now;
+            var events = new ConcurrentBag<ChangeEvent>();
+            var newField = _field.Clone() as bool[,];
             Parallel.For(0, _settings.Width,
                 i =>
                 {
@@ -36,10 +52,16 @@ namespace GameOfLifeNet
                     });
                 });
 
+            var calcSpan = DateTime.Now - dt;
+
             _field = newField;
             _generation++;
 
-            Render();
+            if(events.Count > 0)
+                Render(events);
+
+            var renderSpan = DateTime.Now - dt - calcSpan;
+            return (calcSpan, renderSpan);
 
             void Iteration(int i, int j)
             {
@@ -59,11 +81,19 @@ namespace GameOfLifeNet
                         result = true;
                     }
                 }
-                newField[i, j] = result;
+
+                if (_field[i, j] != result)
+                {
+                    events.Add(new ChangeEvent(i, j, result));
+                    newField[i, j] = result;
+                }
             }
         }
         
-        private void Render() => _render.Render(new GameState(_field, _generation));
+        private void Render(IEnumerable<ChangeEvent> events)
+        {
+            _render.Render(new GameState(_generation, events));
+        }
 
         private byte GetClosestAliveCount(int i, int j)
         {

@@ -39,14 +39,12 @@ namespace GameOfLifeWpf
 
         private Game InitializeGame()
         {
-            var preset = new RandomPreset(70);
-
-            var settings = new GameSettings(
-                (int)FieldImage.Width,
-                (int)FieldImage.Height,
-                new RandomAreas(40, 2, preset));
-
-            var game = new Game(settings, new WpfRender(FieldImage), new ConwaysRuleset());
+            Game game = Game.CreateBuilder()
+                .SetSize((int)FieldImage.Width, (int)FieldImage.Height)
+                .UseConwaysGameOfLife()
+                .RenderWith(new WpfRender(FieldImage))
+                .WithPreset(new RandomAreas(40, 2, new RandomPreset(70)))
+                .Build();
             game.Prepare();
 
             return game;

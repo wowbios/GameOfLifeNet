@@ -19,10 +19,14 @@ namespace GameOfLifeConsole
             try
             {
                 ConsoleHelper.SetConsoleFont(ConsoleFont);
-                
-                var settings = new GameSettings(Width, Height, new GliderAtTheMiddlePreset());
-                
-                var game = new Game(settings, new ConsoleRender(), new ConwaysRuleset());
+
+                Game game = Game.CreateBuilder()
+                    .SetSize(Width, Height)
+                    .UseConwaysGameOfLife()
+                    .RenderWith(new ConsoleRender())
+                    .WithGlider()
+                    .Build();
+
                 game.Prepare();
                 
                 var timer = new Timer(Interval);

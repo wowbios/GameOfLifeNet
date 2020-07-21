@@ -7,19 +7,17 @@ namespace GameOfLifeNet
 {
     public class Game
     {
-        private readonly GameSettings _settings;
-        private readonly IRender _render;
-        private readonly IRuleset _ruleset;
+        private readonly IGameSettings _settings;
         private bool[,] _field;
         private long _generation;
 
-        public Game(GameSettings settings, IRender render, IRuleset ruleset)
+        internal Game(IGameSettings settings)
         {
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            _render = render ?? throw new ArgumentNullException(nameof(render));
-            _ruleset = ruleset ?? throw new ArgumentNullException(nameof(ruleset));
             _field = new bool[settings.Width, settings.Height];
         }
+
+        public static IGameBuilder CreateBuilder() => new GameOfLifeFluentBuilder();
 
         public void Prepare()
         {
@@ -49,7 +47,7 @@ namespace GameOfLifeNet
                     Parallel.For(0, _settings.Height,
                         j =>
                         {
-                            bool isAlive = _ruleset.IsAlive(_field, i, j);
+                            bool isAlive = _settings.Ruleset.IsAlive(_field, i, j);
                             if (_field[i, j] != isAlive)
                             {
                                 events.Add(new ChangeEvent(i, j, isAlive));
@@ -65,6 +63,7 @@ namespace GameOfLifeNet
                 Render(events);
         }
 
-        private void Render(IEnumerable<ChangeEvent> events) => _render.Render(new GameState(_generation, events));
+        private void Render(IEnumerable<ChangeEvent> events)
+            => _settings.Render.Render(new GameState(_generation, events));
     }
 }

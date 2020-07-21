@@ -1,6 +1,7 @@
 ﻿using System;
 using GameOfLifeNet;
 using GameOfLifeNet.Preset;
+using GameOfLifeNet.Ruleset;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole
@@ -21,7 +22,7 @@ namespace GameOfLifeConsole
                 
                 var settings = new GameSettings(Width, Height, new GliderAtTheMiddlePreset());
                 
-                var game = new Game(settings, new ConsoleRender());
+                var game = new Game(settings, new ConsoleRender(), new ConwaysRuleset());
                 game.Prepare();
                 
                 var timer = new Timer(Interval);

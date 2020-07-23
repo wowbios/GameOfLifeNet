@@ -24,6 +24,7 @@ namespace GameOfLifeConsole
                     .SetSize(Width, Height)
                     .UseConwaysGameOfLife()
                     .RenderWith(new ConsoleRender())
+                    .UseBitArrayField()
                     .WithGlider()
                     .Build();
 

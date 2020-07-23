@@ -2,7 +2,7 @@
 {
     public class StickPreset : IPreset
     {
-        public void InitializeField(bool[,] field)
+        public void InitializeField(IGameField field)
         {
             field[1, 2] = true;
             field[2, 2] = true;

@@ -15,27 +15,25 @@ namespace GameOfLifeNet.Preset
             _preset = preset;
         }
 
-        public void InitializeField(bool[,] field)
+        public void InitializeField(IGameField field)
         {
-            var width = field.GetLength(0);
-            var height = field.GetLength(1);
-
-            var areaWidth = width * _areaSize / 100;
-            var areaHeight = height * _areaSize / 100;
+            var areaWidth = field.Width * _areaSize / 100;
+            var areaHeight = field.Height * _areaSize / 100;
 
             var rnd = new Random(Environment.TickCount);
             for (int i = 0; i < _areasCount; i++)
             {
-                var area = new bool[areaWidth, areaHeight];
+                var area = new BitArrayField(areaWidth, areaHeight);
                 _preset.InitializeField(area);
-                var wIndex = rnd.Next(width);
-                var hIndex = rnd.Next(height);
+                area.Swap();
+                var wIndex = rnd.Next(field.Width);
+                var hIndex = rnd.Next(field.Height);
                 for (int wCounter = 0; wCounter < areaWidth; wCounter++)
                 {
                     for (int hCounter = 0; hCounter < areaHeight; hCounter++)
                     {
-                        int w = (wIndex + wCounter) % width;
-                        int h = (hIndex + hCounter) % height;
+                        int w = (wIndex + wCounter) % field.Width;
+                        int h = (hIndex + hCounter) % field.Height;
                         field[w, h] = area[wCounter, hCounter];
                     }
                 }

@@ -43,7 +43,8 @@ namespace GameOfLifeWpf
                 .SetSize((int)FieldImage.Width, (int)FieldImage.Height)
                 .UseConwaysGameOfLife()
                 .RenderWith(new WpfRender(FieldImage))
-                .WithPreset(new RandomAreas(40, 2, new RandomPreset(70)))
+                .UseBitArrayField()
+                .WithPreset(new RandomAreas(20, 5, new RandomPreset(70)))
                 .Build();
             game.Prepare();
 

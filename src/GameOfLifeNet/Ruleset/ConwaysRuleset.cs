@@ -2,12 +2,9 @@
 {
     public class ConwaysRuleset : IRuleset
     {
-        public bool IsAlive(bool[,] field, int x, int y)
+        public bool IsAlive(IGameField field, int x, int y)
         {
-            int width = field.GetLength(0);
-            int height = field.GetLength(1);
-
-            byte aliveNeighbor = GetClosestAliveCount(field, width, height, x, y);
+            byte aliveNeighbor = GetClosestAliveCount(field, x, y);
             bool result = field[x, y];
             if (result)
             {
@@ -23,7 +20,7 @@
             return result;
         }
 
-        private static byte GetClosestAliveCount(bool[,] field, int width, int height, int x, int y)
+        private static byte GetClosestAliveCount(IGameField field, int x, int y)
         {
             //    1_2_3
             // 1| 1 2 3
@@ -31,10 +28,10 @@
             // 3| 7 8 9
             byte alive = 0;
 
-            int i1 = (x + width - 1) % width;
-            int i3 = (x + width + 1) % width;
-            int j1 = (y + height - 1) % height;
-            int j3 = (y + height + 1) % height;
+            int i1 = (x + field.Width - 1) % field.Width;
+            int i3 = (x + field.Width + 1) % field.Width;
+            int j1 = (y + field.Height - 1) % field.Height;
+            int j3 = (y + field.Height + 1) % field.Height;
 
             Check(i1, j1);
             Check(i1, y);

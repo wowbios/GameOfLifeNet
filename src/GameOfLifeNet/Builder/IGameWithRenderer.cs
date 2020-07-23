@@ -2,10 +2,8 @@
 {
     public interface IGameWithRenderer
     {
-        IGameWithPreset WithPreset(IPreset preset);
+        IGameWithField UseBitArrayField();
 
-        IGameWithPreset WithRandomPreset(int fulfillPercent);
-
-        IGameWithPreset WithGlider();
+        IGameWithField UseBoolArrayField();
     }
 }

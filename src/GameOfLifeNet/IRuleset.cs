@@ -2,6 +2,6 @@
 {
     public interface IRuleset
     {
-        bool IsAlive(bool[,] field, int x, int y);
+        bool IsAlive(IGameField field, int x, int y);
     }
 }

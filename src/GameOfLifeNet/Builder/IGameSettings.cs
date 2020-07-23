@@ -13,5 +13,7 @@ namespace GameOfLifeNet
          IRender Render { get; }
 
          IRuleset Ruleset { get; }
+
+         IGameField Field { get; }
     }
 }

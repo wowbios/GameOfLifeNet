@@ -11,6 +11,7 @@ namespace GameOfLifeNet
         IGameWithSize,
         IGameWithRuleset,
         IGameWithRenderer,
+        IGameWithField,
         IGameWithPreset,
         IGameSettings
     {
@@ -19,6 +20,7 @@ namespace GameOfLifeNet
         private IPreset _preset;
         private IRender _render;
         private IRuleset _ruleset;
+        private IGameField _field;
 
         internal GameOfLifeFluentBuilder()
         {
@@ -34,6 +36,7 @@ namespace GameOfLifeNet
 
         IRuleset IGameSettings.Ruleset => _ruleset;
 
+        IGameField IGameSettings.Field => _field;
 
         public IGameWithSize SetSize(int size) => SetSize(size, size);
 
@@ -101,6 +104,18 @@ namespace GameOfLifeNet
             _ = _preset ?? throw new GameOfLifeException("Preset is not set");
             _ = _render ?? throw new GameOfLifeException("Render is not set");
             _ = _ruleset ?? throw new GameOfLifeException("Ruleset is not set");
+        }
+
+        public IGameWithField UseBitArrayField()
+        {
+            _field = new BitArrayField(_width, _height);
+            return this;
+        }
+
+        public IGameWithField UseBoolArrayField()
+        {
+            _field = new BoolField(_width, _height);
+            return this;
         }
     }
 }

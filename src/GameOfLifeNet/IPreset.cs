@@ -2,6 +2,6 @@
 {
     public interface IPreset
     {
-        void InitializeField(bool[,] field);
+        void InitializeField(IGameField field);
     }
 }

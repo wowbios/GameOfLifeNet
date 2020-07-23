@@ -14,17 +14,14 @@ namespace GameOfLifeNet.Preset
             _fulFillPercent = fulFillPercent;
         }
         
-        public void InitializeField(bool[,] field)
+        public void InitializeField(IGameField field)
         {
-            int width = field.GetLength(0);
-            int height = field.GetLength(1);
-            
             var random = new Random();
-            int totalCount = width * height * _fulFillPercent / 100;
+            int totalCount = field.Width * field.Height * _fulFillPercent / 100;
             for (var i = 0; i < totalCount; i++)
             {
-                int x = random.Next(0, width);
-                int y = random.Next(0, height);
+                int x = random.Next(0, field.Width);
+                int y = random.Next(0, field.Height);
                 field[x, y] = true;
             }
         }

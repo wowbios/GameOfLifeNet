@@ -7,6 +7,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameOfLife.CSharp\GameOfLife.CSharp.csproj" />
+      <ProjectReference Include="..\GameOfLife.FSharp\GameOfLife.FSharp.fsproj" />
     </ItemGroup>
 
 </Project>

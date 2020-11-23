@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GameOfLife.Abstractions;
-using GameOfLife.CSharp;
 
 namespace GameOfLifeWpf
 {

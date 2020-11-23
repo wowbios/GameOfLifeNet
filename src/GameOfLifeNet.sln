@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeWpf", "GameOfLife
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.Abstractions", "GameOfLife.Abstractions\GameOfLife.Abstractions.csproj", "{4E43D096-FF15-435E-BE59-4A45449241DA}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GameOfLife.FSharp", "GameOfLife.FSharp\GameOfLife.FSharp.fsproj", "{825C035B-D0D0-4961-81A1-DB61E8C71474}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GameOfLife", "GameOfLife\GameOfLife.fsproj", "{724111DC-08C8-4C97-A9D6-9345E07D732F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{4E43D096-FF15-435E-BE59-4A45449241DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E43D096-FF15-435E-BE59-4A45449241DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E43D096-FF15-435E-BE59-4A45449241DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{825C035B-D0D0-4961-81A1-DB61E8C71474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825C035B-D0D0-4961-81A1-DB61E8C71474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825C035B-D0D0-4961-81A1-DB61E8C71474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825C035B-D0D0-4961-81A1-DB61E8C71474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724111DC-08C8-4C97-A9D6-9345E07D732F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724111DC-08C8-4C97-A9D6-9345E07D732F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724111DC-08C8-4C97-A9D6-9345E07D732F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724111DC-08C8-4C97-A9D6-9345E07D732F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

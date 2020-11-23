@@ -6,7 +6,7 @@ using GameOfLife.CSharp.Builder;
 
 namespace GameOfLife.CSharp
 {
-    public class Game
+    public class Game : IGame
     {
         private readonly IGameSettings _settings;
         private bool[,] _field;

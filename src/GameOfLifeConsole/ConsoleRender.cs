@@ -1,6 +1,5 @@
 ﻿using System;
 using GameOfLife.Abstractions;
-using GameOfLife.CSharp;
 
 namespace GameOfLifeConsole
 {

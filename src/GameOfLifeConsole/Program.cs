@@ -1,5 +1,6 @@
 ﻿using System;
-using GameOfLife.CSharp;
+// using GameOfLife.CSharp;
+using GameOfLife.FSharp;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole

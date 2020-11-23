@@ -4,5 +4,6 @@
 Platform: .Net Core
 - Console :white_check_mark:
 - WPF :white_check_mark:
+- F# :x:
 - Blazor :x:
 - [ILGPU](https://github.com/m4rs-mt/ILGPU) :x:

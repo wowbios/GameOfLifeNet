@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameOfLife.Abstractions;
 using GameOfLife.CSharp.Builder;
 
 namespace GameOfLife.CSharp

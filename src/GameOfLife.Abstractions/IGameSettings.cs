@@ -1,8 +1,6 @@
-﻿using GameOfLife.Abstractions;
-
-namespace GameOfLife.CSharp.Builder
+﻿namespace GameOfLife.Abstractions
 {
-    internal interface IGameSettings
+    public interface IGameSettings
     {
          int Width { get; }
 

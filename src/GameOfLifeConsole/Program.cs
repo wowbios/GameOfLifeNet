@@ -1,6 +1,8 @@
 ﻿using System;
+using GameOfLife.Abstractions;
 // using GameOfLife.CSharp;
 using GameOfLife.FSharp;
+using GameOfLife.FSharp.Game;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole
@@ -19,21 +21,29 @@ namespace GameOfLifeConsole
             {
                 ConsoleHelper.SetConsoleFont(ConsoleFont);
 
-                Game game = Game.CreateBuilder()
-                    .SetSize(Width, Height)
-                    .UseConwaysGameOfLife()
-                    .RenderWith(new ConsoleRender())
-                    .WithGlider()
-                    .Build();
-
-                game.Prepare();
+                // Game game = Game.CreateBuilder()
+                //     .SetSize(Width, Height)
+                //     .UseConwaysGameOfLife()
+                //     .RenderWith(new ConsoleRender())
+                //     .WithGlider()
+                //     .Build();
                 
+                var game = new Game(new GameSettings(
+                    Width,
+                    Height, 
+                    new Preset.StickPreset(),
+                    new ConsoleRender(),
+                    new Ruleset.ConwaysRuleset()));
+
+                var g = game as IGame;
+                g.Prepare();
+
                 var timer = new Timer(Interval);
                 timer.Elapsed += (_, e) =>
                 {
                     try
                     {
-                        game.MakeNextGeneration();
+                        g.MakeNextGeneration();
                     }
                     catch (Exception ex)
                     {

@@ -10,7 +10,8 @@
 
     <ItemGroup>
       <Compile Include="Game.fs" />
-      <Compile Include="ConwayRuleset.fs" />
+      <Compile Include="Ruleset.fs" />
+      <Compile Include="Preset.fs" />
     </ItemGroup>
 
 </Project>

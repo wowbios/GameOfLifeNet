@@ -1,4 +1,4 @@
-﻿namespace GameOfLifeNet
+﻿namespace GameOfLife.Abstractions
 {
     public interface IRuleset
     {

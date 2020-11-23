@@ -1,6 +1,8 @@
-﻿namespace GameOfLifeNet
+﻿using GameOfLife.Abstractions;
+
+namespace GameOfLife.CSharp
 {
-    public readonly struct ChangeEvent
+    public readonly struct ChangeEvent : IChangeEvent
     {
         public ChangeEvent(int x, int y, bool isAlive)
         {

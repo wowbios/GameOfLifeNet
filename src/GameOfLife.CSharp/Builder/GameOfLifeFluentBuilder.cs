@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Drawing;
-using GameOfLifeNet.Exceptions;
-using GameOfLifeNet.Preset;
-using GameOfLifeNet.Ruleset;
+using GameOfLife.Abstractions;
+using GameOfLife.CSharp.Exceptions;
+using GameOfLife.CSharp.Preset;
+using GameOfLife.CSharp.Ruleset;
 
-namespace GameOfLifeNet
+namespace GameOfLife.CSharp.Builder
 {
     internal sealed class GameOfLifeFluentBuilder :
         IGameBuilder,

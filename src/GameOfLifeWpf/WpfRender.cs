@@ -6,7 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GameOfLifeNet;
+using GameOfLife.Abstractions;
+using GameOfLife.CSharp;
 
 namespace GameOfLifeWpf
 {
@@ -21,7 +22,7 @@ namespace GameOfLifeWpf
             _image = image ?? throw new ArgumentNullException(nameof(image));
         }
 
-        public void Render(GameState state)
+        public void Render(IGameState state)
         {
             if(!_inited)
                 Init();
@@ -39,10 +40,10 @@ namespace GameOfLifeWpf
             _inited = true;
         }
 
-        private void DrawPixelsEx(IEnumerable<ChangeEvent> events)
+        private void DrawPixelsEx(IEnumerable<IChangeEvent> events)
         {
             using (_bitmap.GetBitmapContext())
-                foreach(ChangeEvent e in events)
+                foreach(IChangeEvent e in events)
                     _bitmap.SetPixel(e.X, e.Y, e.IsAlive ? Colors.White : Colors.Black);
         }
     }

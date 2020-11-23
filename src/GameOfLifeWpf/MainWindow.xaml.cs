@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
-using GameOfLifeNet;
-using GameOfLifeNet.Preset;
-using GameOfLifeNet.Ruleset;
+using GameOfLife.CSharp;
+using GameOfLife.CSharp.Preset;
 
 namespace GameOfLifeWpf
 {

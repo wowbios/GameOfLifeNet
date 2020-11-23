@@ -1,4 +1,6 @@
-﻿namespace GameOfLifeNet.Preset
+﻿using GameOfLife.Abstractions;
+
+namespace GameOfLife.CSharp.Preset
 {
     public class GliderAtTheMiddlePreset : IPreset
     {

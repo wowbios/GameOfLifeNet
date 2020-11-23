@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace GameOfLifeNet
+namespace GameOfLife.CSharp.Builder
 {
     public interface IGameBuilder
     {

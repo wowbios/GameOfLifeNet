@@ -1,11 +1,12 @@
 ﻿using System;
-using GameOfLifeNet;
+using GameOfLife.Abstractions;
+using GameOfLife.CSharp;
 
 namespace GameOfLifeConsole
 {
     public class ConsoleRender : IRender
     {
-        public void Render(GameState state)
+        public void Render(IGameState state)
         {
             Console.SetCursorPosition(0,0);
             Console.Write(state.Generation);

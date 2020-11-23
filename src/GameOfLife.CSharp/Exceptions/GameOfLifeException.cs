@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameOfLifeNet.Exceptions
+namespace GameOfLife.CSharp.Exceptions
 {
     public class GameOfLifeException : Exception
     {

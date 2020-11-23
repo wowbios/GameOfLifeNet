@@ -1,6 +1,7 @@
 ﻿using System;
+using GameOfLife.Abstractions;
 
-namespace GameOfLifeNet.Preset
+namespace GameOfLife.CSharp.Preset
 {
     public class RandomAreas : IPreset
     {

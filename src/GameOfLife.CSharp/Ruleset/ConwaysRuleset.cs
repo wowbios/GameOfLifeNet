@@ -1,4 +1,6 @@
-﻿namespace GameOfLifeNet.Ruleset
+﻿using GameOfLife.Abstractions;
+
+namespace GameOfLife.CSharp.Ruleset
 {
     public class ConwaysRuleset : IRuleset
     {

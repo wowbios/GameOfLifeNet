@@ -1,6 +1,6 @@
-﻿using System;
+﻿using GameOfLife.Abstractions;
 
-namespace GameOfLifeNet
+namespace GameOfLife.CSharp.Builder
 {
     internal interface IGameSettings
     {

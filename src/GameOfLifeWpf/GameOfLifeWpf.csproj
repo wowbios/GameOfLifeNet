@@ -8,11 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameOfLifeNet\GameOfLifeNet.csproj" />
+      <PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="WriteableBitmapEx" Version="1.6.7" />
+      <ProjectReference Include="..\GameOfLife.CSharp\GameOfLife.CSharp.csproj" />
     </ItemGroup>
 
 </Project>

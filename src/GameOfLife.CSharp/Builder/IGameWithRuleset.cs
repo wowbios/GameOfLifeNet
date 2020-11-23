@@ -1,4 +1,6 @@
-﻿namespace GameOfLifeNet
+﻿using GameOfLife.Abstractions;
+
+namespace GameOfLife.CSharp.Builder
 {
     public interface IGameWithRuleset
     {

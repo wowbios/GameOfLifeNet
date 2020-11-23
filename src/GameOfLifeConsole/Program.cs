@@ -1,7 +1,5 @@
 ﻿using System;
-using GameOfLifeNet;
-using GameOfLifeNet.Preset;
-using GameOfLifeNet.Ruleset;
+using GameOfLife.CSharp;
 using Timer = System.Timers.Timer;
 
 namespace GameOfLifeConsole

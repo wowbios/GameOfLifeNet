@@ -2,8 +2,9 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameOfLife.CSharp.Builder;
 
-namespace GameOfLifeNet
+namespace GameOfLife.CSharp
 {
     public class Game
     {

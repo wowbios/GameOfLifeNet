@@ -1,4 +1,4 @@
-﻿namespace GameOfLifeNet
+﻿namespace GameOfLife.CSharp.Builder
 {
     public interface IGameWithPreset
     {

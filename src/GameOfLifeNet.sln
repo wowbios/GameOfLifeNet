@@ -1,10 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeNet", "GameOfLifeNet\GameOfLifeNet.csproj", "{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.CSharp", "GameOfLife.CSharp\GameOfLife.CSharp.csproj", "{D2874BC5-FDF0-45D8-85BB-B79C97B134F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeConsole", "GameOfLifeConsole\GameOfLifeConsole.csproj", "{26ED6A2C-4AB5-409B-99E5-564EC6DDD835}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeWpf", "GameOfLifeWpf\GameOfLifeWpf.csproj", "{A8B08032-4229-4449-BCFD-E281B452075D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.Abstractions", "GameOfLife.Abstractions\GameOfLife.Abstractions.csproj", "{4E43D096-FF15-435E-BE59-4A45449241DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +26,9 @@ Global
 		{A8B08032-4229-4449-BCFD-E281B452075D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B08032-4229-4449-BCFD-E281B452075D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B08032-4229-4449-BCFD-E281B452075D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E43D096-FF15-435E-BE59-4A45449241DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E43D096-FF15-435E-BE59-4A45449241DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E43D096-FF15-435E-BE59-4A45449241DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E43D096-FF15-435E-BE59-4A45449241DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Media;
-using GameOfLife.CSharp;
+using GameOfLife.Abstractions;
 using GameOfLife.CSharp.Preset;
+//using GameOfLife.CSharp;
+using GameOfLife.FSharp;
+using GameOfLife.FSharp.Game;
 
 namespace GameOfLifeWpf
 {
@@ -14,7 +17,7 @@ namespace GameOfLifeWpf
             RenderOptions.SetBitmapScalingMode(FieldImage, BitmapScalingMode.NearestNeighbor);
             RenderOptions.SetEdgeMode(FieldImage, EdgeMode.Aliased);
 
-            Game game = InitializeGame();
+            IGame game = InitializeGame();
 
             FieldImage.Height = Height;
             FieldImage.Width = Width;
@@ -22,7 +25,7 @@ namespace GameOfLifeWpf
             RunGame(game);
         }
 
-        private void RunGame(Game game)
+        private void RunGame(IGame game)
         {
             Task.Run(
                 () =>
@@ -36,16 +39,22 @@ namespace GameOfLifeWpf
                     }});
         }
 
-        private Game InitializeGame()
+        private IGame InitializeGame()
         {
-            Game game = Game.CreateBuilder()
-                .SetSize((int)FieldImage.Width, (int)FieldImage.Height)
-                .UseConwaysGameOfLife()
-                .RenderWith(new WpfRender(FieldImage))
-                .WithPreset(new RandomAreas(40, 2, new RandomPreset(70)))
-                .Build();
-            game.Prepare();
+            // Game game = Game.CreateBuilder()
+            //     .SetSize((int)FieldImage.Width, (int)FieldImage.Height)
+            //     .UseConwaysGameOfLife()
+            //     .RenderWith(new WpfRender(FieldImage))
+            //     .WithPreset(new RandomAreas(40, 2, new RandomPreset(70)))
+            //     .Build();
+            // game.Prepare();
 
+            IGame game = new Game(new GameSettings((int) FieldImage.Width, (int) FieldImage.Height,
+                new Preset.RandomAreas(40, 2, new Preset.RandomPreset(70)),
+                //new Preset.StickPreset(),
+                new WpfRender(FieldImage),
+                new Ruleset.ConwaysRuleset()));
+            game.Prepare();
             return game;
         }
     }

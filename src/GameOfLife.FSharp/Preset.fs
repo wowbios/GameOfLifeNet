@@ -29,7 +29,7 @@ type StickPreset() = inherit Preset(fun _ (i, j) -> [
         3, 2
     ])
 
-let randomPreset field i j percent =
+let private randomPreset field i j percent =
     let w = Array2D.length1 field
     let h = Array2D.length2 field
     
@@ -44,7 +44,7 @@ type RandomPreset(percent) =
     if percent < 0 || percent > 100 then
         raise (ArgumentException("Fulfill must be positive and less than 100", "percent"))
         
-let randomAreasPreset(field, i, j, size, count, preset:IPreset) =
+let private randomAreasPreset(field, i, j, size, count, preset:IPreset) =
     let w = Array2D.length1 field
     let h = Array2D.length2 field
     
@@ -55,11 +55,11 @@ let randomAreasPreset(field, i, j, size, count, preset:IPreset) =
     
     let wi = rnd.Next(0, w)
     let hi = rnd.Next(0, h)
-    [|for _ in 0..count do
+    [|for _ in 0..count - 1 do
         let area = Array2D.init aw ah (fun _ _ -> false)
         preset.InitializeField(area) 
-        for wc in 0..aw do
-            for hc in 0..ah do
+        for wc in 0..aw - 1 do
+            for hc in 0..ah - 1 do
                 let x = (wi + wc) % w
                 let y = (hi + hc) % h
                 if Array2D.get area wc hc then

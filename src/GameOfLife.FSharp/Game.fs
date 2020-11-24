@@ -30,33 +30,47 @@ type Game(settings: IGameSettings) =
         let state = GameState(generation, events)
         settings.Render.Render state
     
-    let prepare =
+    let prepare() =
         let w = Array2D.length1 field
         let h = Array2D.length2 field
         
         settings.Preset.InitializeField(field)
-        render [| for i in 0..w do
-                  for j in 0..h do
-                    yield ChangeEvent(i, j, field.[i, j])|]
+        render [| for i in 0..w - 1 do
+                  for j in 0..h - 1 do
+                    ChangeEvent(i, j, field.[i, j]) |]
         
-    let makeNextGen =
-        let events = System.Collections.Generic.List()
+    let makeNextGen() =
+        let events = ResizeArray()
         let newField = Array2D.copy field
-        Array2D.iteri (fun ri ci v ->
-            let isA = settings.Ruleset.IsAlive(field, ri, ci)
-            if v <> isA then
-                events.Add(ChangeEvent(ri, ci, isA))
-                newField.[ri, ci] <- isA
-            ) field
+        let width = Array2D.length1 field
+        let height = Array2D.length2 field
+        
+        let processRow rowIndex rowWidth field  =        
+            seq {
+                for columnIndex in 0..rowWidth - 1 do
+                    let current = Array2D.get field rowIndex columnIndex
+                    let isA = settings.Ruleset.IsAlive(field, rowIndex, columnIndex)
+                    if current <> isA then
+                        newField.[rowIndex, columnIndex] <- isA
+                        ChangeEvent(rowIndex, columnIndex, isA)                    
+            }
+        
+        seq {
+            for rowIndex in 0..height - 1 do
+                processRow rowIndex width field |> async.Return
+        }
+        |> Async.Parallel
+        |> Async.RunSynchronously
+        |> Array.iter (Seq.iter events.Add)
         
         field <- newField
         generation <- generation + 1L
         
         if events.Count > 0 then
             render (events
-                    |> Seq.map (fun e -> e:> IChangeEvent)
+                    |> Seq.map (fun e -> e :> IChangeEvent)
                     |> Seq.toArray)
     
     interface IGame with
-        member this.Prepare() = prepare
-        member this.MakeNextGeneration() = makeNextGen  
+        member this.Prepare() = prepare()
+        member this.MakeNextGeneration() = makeNextGen()

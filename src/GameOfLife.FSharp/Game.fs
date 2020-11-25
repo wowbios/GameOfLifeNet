@@ -49,7 +49,7 @@ type Game(settings: IGameSettings) =
 //                let isAlive = settings.Ruleset.IsAlive(field, x , y)
 //                match value = isAlive with
 //                | true -> value
-//                | false -> ChangeEvent(x,y, isAlive) :> IChangeEvent |> events.Add
+//                | false -> ChangeEvent(x,y, isAlive) |> events.Add
 //                           isAlive)
 
         // multi thread

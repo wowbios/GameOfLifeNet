@@ -1,5 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildFeatures.freeDiskSpace
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
+import jetbrains.buildServer.configs.kotlin.buildSteps.dotnetBuild
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
@@ -44,8 +46,10 @@ object GameOfLifeNet_Build : BuildType({
         }
     }
 
-    features {
-        perfmon {
+    steps{
+        dotnetBuild {
+            projects = "src/GameOfLifeNet.sln2"
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
     }
 })

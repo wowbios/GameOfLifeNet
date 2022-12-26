@@ -41,15 +41,16 @@ object GameOfLifeNet_Build : BuildType({
         root(DslContext.settingsRoot)
     }
 
-    triggers {
-        vcs {
-        }
-    }
-
-    steps{
+    steps {
         dotnetBuild {
             projects = "src/GameOfLifeNet.sln2"
             param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
     }
+
+    triggers {
+        vcs {
+        }
+    }
+
 })

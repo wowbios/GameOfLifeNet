@@ -1,28 +1,50 @@
 ﻿using GameOfLife.Abstractions;
+using System;
 
 namespace GameOfLife.CSharp.Ruleset
 {
     public class ConwaysRuleset : IRuleset
     {
+        private readonly Random _random = new Random();
+        private int _unchangedGenerations = 0;
+        private const int MaxUnchangedGenerations = 10;
+
         public bool IsAlive(bool[,] field, int x, int y)
         {
             int width = field.GetLength(0);
             int height = field.GetLength(1);
 
             byte aliveNeighbor = GetClosestAliveCount(field, width, height, x, y);
-            bool result = field[x, y];
-            if (result)
+            bool currentState = field[x, y];
+            bool newState = currentState;
+
+            if (currentState)
             {
                 if (aliveNeighbor != 2 && aliveNeighbor != 3)
-                    return false;
+                    newState = false;
             }
             else
             {
                 if (aliveNeighbor == 3)
-                    return true;
+                    newState = true;
             }
 
-            return result;
+            // Check if state changed
+            if (newState != currentState)
+            {
+                _unchangedGenerations = 0;
+            }
+            else if (x == 0 && y == 0) // Only check once per generation
+            {
+                _unchangedGenerations++;
+                if (_unchangedGenerations >= MaxUnchangedGenerations)
+                {
+                    newState = _random.NextDouble() < 0.05; // 5% chance to spawn new life
+                    _unchangedGenerations = 0;
+                }
+            }
+
+            return newState;
         }
 
         private static byte GetClosestAliveCount(bool[,] field, int width, int height, int x, int y)

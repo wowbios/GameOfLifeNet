@@ -10,9 +10,10 @@ namespace GameOfLifeConsole
         {
             Console.SetCursorPosition(0,0);
             Console.Write(state.Generation);
+            
             foreach (var e in state.Events)
             {
-                Console.SetCursorPosition(e.X, e.Y +1);
+                Console.SetCursorPosition(e.X, e.Y + 1);
                 Console.Write(e.IsAlive ? "█" : " ");
             }
         }

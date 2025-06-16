@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 using GameOfLife.Abstractions;
-using GameOfLife.CSharp;
 
 namespace GameOfLifeWpf
 {
     public class WpfRender : IRender
     {
         private readonly Image _image;
-        private bool _inited;
         private WriteableBitmap _bitmap;
+        private bool _inited;
+        private readonly object _renderLock = new object();
 
         public WpfRender(Image image)
         {
@@ -24,10 +21,49 @@ namespace GameOfLifeWpf
 
         public void Render(IGameState state)
         {
-            if(!_inited)
+            if (state == null) return;
+            
+            if (!_inited)
+            {
                 Init();
+                return;
+            }
 
-            Application.Current.Dispatcher.Invoke(() => DrawPixelsEx(state.Events));
+            try 
+            {
+                var events = state.Events.ToList();
+                if (events.Count == 0) return;
+
+                var dispatcher = Application.Current?.Dispatcher;
+                if (dispatcher == null) return;
+
+                dispatcher.BeginInvoke((Action)(() => 
+                {
+                    try
+                    {
+                        lock (_renderLock)
+                        {
+                            if (_bitmap == null) return;
+                            
+                            using (var context = _bitmap.GetBitmapContext())
+                            {
+                                foreach (var e in events)
+                                {
+                                    _bitmap.SetPixel(e.X, e.Y, e.IsAlive ? Colors.White : Colors.Black);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Render error: {ex.Message}");
+                    }
+                }), System.Windows.Threading.DispatcherPriority.Background);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Render preparation error: {ex.Message}");
+            }
         }
 
         private void Init()
@@ -36,15 +72,7 @@ namespace GameOfLifeWpf
                 (int)_image.Width,
                 (int)_image.Height);
             _bitmap.Clear(Colors.Black);
-
             _inited = true;
-        }
-
-        private void DrawPixelsEx(IEnumerable<IChangeEvent> events)
-        {
-            using (_bitmap.GetBitmapContext())
-                foreach(IChangeEvent e in events)
-                    _bitmap.SetPixel(e.X, e.Y, e.IsAlive ? Colors.White : Colors.Black);
         }
     }
 }
